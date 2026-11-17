@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f7f2">
+    <meta name="description" content="A calm, interactive collection of daily Muslim adhkar and remembrance.">
+    <title>Adhkar — Noor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="adhkar.js" defer></script>
+</head>
+<body class="utility-page">
+    <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Noor home">
+            <span class="brand-mark" aria-hidden="true">ن</span>
+            <span>Noor<span class="brand-subtitle">QURAN & RECITATION</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Quran</a>
+            <a href="prayer-times.html">Prayer Times</a>
+            <a href="adhkar.html" aria-current="page">Adhkar</a>
+        </nav>
+        <p class="topbar-note"><span class="status-dot"></span>Remember Allah, often</p>
+    </header>
+
+    <main class="tool-page adhkar-page">
+        <section class="page-intro">
+            <p class="eyebrow">WORDS FOR THE HEART</p>
+            <h1>Daily Adhkar</h1>
+            <p>Take a quiet moment for remembrance. Your count is saved on this device for today.</p>
+        </section>
+
+        <section class="adhkar-overview tool-card" aria-label="Daily remembrance progress">
+            <div class="overview-copy">
+                <span class="eyebrow">YOUR PROGRESS</span>
+                <strong id="progress-count">0 of 0 completed</strong>
+                <span id="progress-hint">Choose a collection and begin at your own pace.</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Collection progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span id="progress-fill"></span>
+            </div>
+        </section>
+
+        <nav id="adhkar-categories" class="category-tabs" aria-label="Adhkar collection">
+            <button type="button" class="category-tab is-active" data-category="morning" aria-pressed="true">Morning</button>
+            <button type="button" class="category-tab" data-category="evening" aria-pressed="false">Evening</button>
+            <button type="button" class="category-tab" data-category="afterPrayer" aria-pressed="false">After prayer</button>
+            <button type="button" class="category-tab" data-category="sleep" aria-pressed="false">Sleep & waking</button>
+            <button type="button" class="category-tab" data-category="daily" aria-pressed="false">Daily</button>
+        </nav>
+
+        <section id="adhkar-list" class="adhkar-list" aria-live="polite"></section>
+        <p class="calculation-note">Arabic text and references are provided as a learning aid. Please consult a trusted scholar or source if you need to verify a wording or ruling.</p>
+    </main>
+</body>
+</html>

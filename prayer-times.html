@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f7f2">
+    <meta name="description" content="Calculate local Muslim prayer times and set Adhan reminders.">
+    <title>Prayer Times — Noor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="prayer-times.js" defer></script>
+</head>
+<body class="utility-page">
+    <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Noor home">
+            <span class="brand-mark" aria-hidden="true">ن</span>
+            <span>Noor<span class="brand-subtitle">QURAN & RECITATION</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Quran</a>
+            <a href="prayer-times.html" aria-current="page">Prayer Times</a>
+            <a href="adhkar.html">Adhkar</a>
+        </nav>
+        <p class="topbar-note"><span class="status-dot"></span>Calculated on your device</p>
+    </header>
+
+    <main class="tool-page">
+        <section class="page-intro">
+            <p class="eyebrow">YOUR DAILY RHYTHM</p>
+            <h1>Prayer Times</h1>
+            <p>Find today's salah times and set a reminder for each prayer.</p>
+        </section>
+
+        <div class="prayer-grid">
+            <section class="tool-card prayer-card" aria-labelledby="today-heading">
+                <div class="card-heading">
+                    <div>
+                        <p class="eyebrow">ON TIME, WITH INTENTION</p>
+                        <h2 id="today-heading">Today's prayers</h2>
+                    </div>
+                    <span id="date-label" class="date-pill"></span>
+                </div>
+
+                <div id="next-prayer" class="next-prayer" aria-live="polite">
+                    <span class="next-label">NEXT PRAYER</span>
+                    <strong id="next-prayer-name">Set your location</strong>
+                    <span id="next-prayer-time">Prayer times are calculated locally.</span>
+                </div>
+
+                <div class="prayer-list" id="prayer-list" aria-live="polite">
+                    <p class="empty-search">Allow location access or enter coordinates to see prayer times.</p>
+                </div>
+                <p id="prayer-message" class="inline-message" role="status" aria-live="polite"></p>
+
+                <div class="location-tools">
+                    <div class="location-actions">
+                        <button id="locate-button" class="primary-button" type="button">Use my location</button>
+                        <span id="location-label" class="location-label">Your coordinates stay in this browser.</span>
+                    </div>
+                    <label class="field-label" for="method-select">CALCULATION METHOD</label>
+                    <select id="method-select" class="form-control">
+                        <option value="MWL">Muslim World League</option>
+                        <option value="ISNA">ISNA</option>
+                        <option value="Egypt">Egyptian General Authority</option>
+                        <option value="Makkah">Umm Al-Qura, Makkah</option>
+                        <option value="Karachi">University of Islamic Sciences, Karachi</option>
+                    </select>
+                    <label class="field-label" for="asr-method">ASR JURISTIC METHOD</label>
+                    <select id="asr-method" class="form-control">
+                        <option value="1">Standard</option>
+                        <option value="2">Hanafi</option>
+                    </select>
+                    <details class="manual-location">
+                        <summary>Enter coordinates manually</summary>
+                        <form id="coordinates-form" class="coordinates-form">
+                            <label>
+                                Latitude
+                                <input id="latitude-input" class="form-control" type="number" min="-90" max="90" step="any" placeholder="e.g. 24.7136" required>
+                            </label>
+                            <label>
+                                Longitude
+                                <input id="longitude-input" class="form-control" type="number" min="-180" max="180" step="any" placeholder="e.g. 46.6753" required>
+                            </label>
+                            <label>
+                                UTC offset
+                                <input id="timezone-input" class="form-control" type="number" min="-12" max="14" step="0.25" required>
+                            </label>
+                            <p class="coordinate-hint">Use the location's UTC offset (for example, Saudi Arabia is UTC+3).</p>
+                            <button class="secondary-button" type="submit">Calculate times</button>
+                        </form>
+                    </details>
+                </div>
+            </section>
+
+            <aside class="tool-card alert-card" aria-labelledby="alert-heading">
+                <div class="card-heading">
+                    <div>
+                        <p class="eyebrow">A GENTLE REMINDER</p>
+                        <h2 id="alert-heading">Adhan alerts</h2>
+                    </div>
+                    <span class="alert-icon" aria-hidden="true">♪</span>
+                </div>
+                <p class="card-description">Choose an Adhan audio file from your device. It stays on your device and will play when a prayer time arrives.</p>
+
+                <label class="field-label" for="adhan-file">YOUR ADHAN AUDIO</label>
+                <input id="adhan-file" class="file-input" type="file" accept="audio/*">
+                <div class="audio-action-row">
+                    <span id="audio-file-name" class="file-name">No audio selected</span>
+                    <button id="test-audio-button" class="secondary-button" type="button" disabled>Test audio</button>
+                </div>
+                <audio id="adhan-audio" preload="auto"></audio>
+
+                <button id="enable-alerts-button" class="primary-button full-button" type="button" disabled>Enable prayer alerts</button>
+                <p id="alert-status" class="inline-message" role="status" aria-live="polite">Choose an audio file and set your prayer times first.</p>
+                <div class="alert-note">
+                    <strong>Keep this page open</strong>
+                    <span>Browser alerts work only while this page is open. Allow notifications when prompted, and keep your device volume on.</span>
+                </div>
+                <p class="privacy-note">Prayer times are calculated in JavaScript on your device. Your location is not sent to a server.</p>
+            </aside>
+        </div>
+        <p class="calculation-note">Prayer times are estimates; local mosque schedules and scholarly calculation settings may differ.</p>
+    </main>
+</body>
+</html>
